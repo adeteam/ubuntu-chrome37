@@ -23,6 +23,10 @@ RUN /setup.sh
 RUN add-apt-repository ppa:git-core/ppa
 RUN apt-get update -qq && apt-get install -y git
 
+# load bitbucket ssh key
+RUN mkdir -p ~/.ssh
+RUN ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
+
 # remove and clean up apt
 RUN add-apt-repository -r "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
 RUN add-apt-repository -r "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main"
